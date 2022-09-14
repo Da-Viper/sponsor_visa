@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Sponsorvisa</string>
+    <string name="default_company">Company A</string>
+    <string name="default_city">county, city</string>
+    <string name="default_rating">rating</string>
+    <string name="default_route">route</string>
 </resources>

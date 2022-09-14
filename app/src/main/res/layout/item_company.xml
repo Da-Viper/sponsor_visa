@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="100dp"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <!--  company name-->
+        <TextView
+            android:id="@+id/tvCompanyName"
+            android:text="@string/default_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- county and city name-->
+        <TextView
+            android:id="@+id/tvCity"
+            android:text="@string/default_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!--  Rating name-->
+        <TextView
+            android:id="@+id/tvRating"
+            android:text="@string/default_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!--  Route name-->
+        <TextView
+            android:id="@+id/tvRoute"
+            android:text="@string/default_route"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
