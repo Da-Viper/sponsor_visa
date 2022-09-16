@@ -10,10 +10,16 @@ import com.example.sponsorvisa.repository.Repository
 class SharedViewModel(app: Application) : AndroidViewModel(app) {
 
 
+    private val repository: Repository
     val localData: LiveData<List<Company>> get() = _localData
     private var _localData = MutableLiveData<List<Company>>()
 
     init {
-        _localData.postValue(Repository(app).getLocalCompanies())
+        repository = Repository(app)
+        setvalue()
+    }
+
+    private fun setvalue() {
+        _localData.postValue(repository.getLocalCompanies())
     }
 }

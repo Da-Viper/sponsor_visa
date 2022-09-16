@@ -1,11 +1,13 @@
 package com.example.sponsorvisa
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.sponsorvisa.adapter.CompanyItemAdapter
 import com.example.sponsorvisa.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
@@ -27,15 +29,21 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.localData.observe(viewLifecycleOwner) {
-            val hh = it[0].name
-            _binding?.apply {
-                textView.text = hh
-            }
-
-        }
+        setupRecyclerView()
     }
 
+    private fun setupRecyclerView() {
+
+        Log.i("Recycler view", "setting stuff")
+        binding.rvMain.adapter = CompanyItemAdapter(requireContext())
+        viewModel.localData.observe(viewLifecycleOwner) {
+
+            (binding.rvMain.adapter as CompanyItemAdapter).apply {
+                Log.i("Recycler view", it[0].city.toString())
+                submitList(it)
+            }
+        }
+    }
 //    override fun onActivityCreated(savedInstanceState: Bundle?) {
 //        super.onActivityCreated(savedInstanceState)
 //        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
