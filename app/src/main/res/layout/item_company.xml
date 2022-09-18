@@ -20,7 +20,8 @@
             android:id="@+id/tvCompanyName"
             android:text="@string/default_company"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            style="@style/HeaderTextStyle"/>
 
         <!-- county and city name-->
         <TextView

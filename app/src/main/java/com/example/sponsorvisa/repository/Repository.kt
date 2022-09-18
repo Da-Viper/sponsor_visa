@@ -8,12 +8,12 @@ import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 
 class Repository(private val application: Application) {
 
-    fun getLocalCompanies(): List<Company> {
+    suspend fun getLocalCompanies(): List<Company> {
 
         return parseCSV()
     }
 
-    private fun parseCSV(): List<Company> {
+    private suspend fun parseCSV(): List<Company> {
 
         val resfile = application.applicationContext.resources.openRawResource(R.raw.test)
         val raa: List<Company> = csvReader().open(resfile) {

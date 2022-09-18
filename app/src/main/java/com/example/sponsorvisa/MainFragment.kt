@@ -35,10 +35,8 @@ class MainFragment : Fragment() {
     private fun setupRecyclerView() {
 
         Log.i("Recycler view", "setting stuff")
-        binding.rvMain.adapter = CompanyItemAdapter(requireContext())
         viewModel.localData.observe(viewLifecycleOwner) {
-
-            (binding.rvMain.adapter as CompanyItemAdapter).apply {
+            binding.rvMain.adapter = CompanyItemAdapter().apply {
                 Log.i("Recycler view", it[0].city.toString())
                 submitList(it)
             }
