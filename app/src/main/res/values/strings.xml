@@ -5,4 +5,5 @@
     <string name="default_rating">rating</string>
     <string name="default_route">route</string>
     <string name="default_search_text">Search</string>
+    <string name="search_placeholder">Search company..</string>
 </resources>
