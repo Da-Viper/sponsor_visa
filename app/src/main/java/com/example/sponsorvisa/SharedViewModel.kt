@@ -4,8 +4,11 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.sponsorvisa.model.Company
 import com.example.sponsorvisa.repository.Repository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SharedViewModel(app: Application) : AndroidViewModel(app) {
 
@@ -20,6 +23,8 @@ class SharedViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     private fun setvalue() {
-        _localData.postValue(repository.getLocalCompanies())
+        viewModelScope.launch(Dispatchers.IO) {
+            _localData.postValue(repository.getLocalCompanies())
+        }
     }
 }

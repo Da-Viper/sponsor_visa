@@ -16,8 +16,6 @@ class CompanyItemView(context: Context): MaterialCardView(context) {
     init {
         inflate(context, R.layout.item_company, this)
         val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-        params.marginStart = 40
-        params.marginEnd = 40
         layoutParams = params
         tvCity = findViewById(R.id.tvCity)
         tvName = findViewById(R.id.tvCompanyName)

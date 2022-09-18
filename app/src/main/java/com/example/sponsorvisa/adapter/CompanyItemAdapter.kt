@@ -1,27 +1,34 @@
 package com.example.sponsorvisa.adapter
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sponsorvisa.CompanyItemView
+import com.example.sponsorvisa.databinding.ItemCompanyBinding
 import com.example.sponsorvisa.model.Company
 
-class CompanyItemAdapter internal constructor(private val context: Context) :
-    ListAdapter<Company, CompanyItemAdapter.CompanyItemViewHolder>(
-        CompanyItemDiffCallback()
-    ) {
+class CompanyItemAdapter :
+    ListAdapter<Company, CompanyItemAdapter.CompanyItemViewHolder>(CompanyItemDiffCallback()) {
 
+    inner class CompanyItemViewHolder(private val binding: ItemCompanyBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-    inner class CompanyItemViewHolder(val companyItemView: CompanyItemView) :
-        RecyclerView.ViewHolder(companyItemView)
+        fun bindItem(company: Company) {
+            binding.tvCompanyName.text = company.name
+            binding.tvCity.text = company.city
+            binding.tvRating.text = company.rating
+            binding.tvRoute.text = company.route
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompanyItemViewHolder {
-        return CompanyItemViewHolder(CompanyItemView(context))
+        val binding = ItemCompanyBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CompanyItemViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CompanyItemViewHolder, position: Int) {
         val item = getItem(position)
-        holder.companyItemView.setItem(item)
+        holder.bindItem(item)
     }
 }
