@@ -1,16 +1,34 @@
 package com.example.sponsorvisa
 
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.WindowInsets
-import android.view.WindowManager
-import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import com.example.sponsorvisa.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         supportActionBar?.hide()
+        setContentView(binding.root)
+    }
+
+    private fun setupSearchQuery() {
+        val searchView: SearchView = binding.bottomBar.searchView
+
+        searchView.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    TODO("Not yet implemented")
+                }
+            }
+        )
     }
 }

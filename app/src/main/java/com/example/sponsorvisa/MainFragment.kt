@@ -2,9 +2,8 @@ package com.example.sponsorvisa
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.sponsorvisa.adapter.CompanyItemAdapter
@@ -32,6 +31,13 @@ class MainFragment : Fragment() {
         setupRecyclerView()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_fragment_company, menu)
+
+        val searchItem =menu.findItem(R.id.action_search_bar)
+        val searchView = searchItem.actionView as SearchView
+
+    }
     private fun setupRecyclerView() {
 
         Log.i("Recycler view", "setting stuff")
@@ -42,11 +48,12 @@ class MainFragment : Fragment() {
             }
         }
     }
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-//        // TODO: Use the ViewModel
-//    }
+
+
+
+    private fun setupSearchView() {
+        val parent = (requireActivity() as MainActivity)
+    }
 
     companion object {
         fun newInstance() = MainFragment()
