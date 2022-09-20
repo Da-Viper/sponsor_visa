@@ -1,6 +1,6 @@
 package com.example.sponsorvisa.data
 
-import android.app.Application
+import android.content.Context
 import com.example.sponsorvisa.R
 import com.example.sponsorvisa.data.local.Company
 import com.example.sponsorvisa.data.local.CompanyDao
@@ -9,11 +9,9 @@ import kotlinx.coroutines.flow.Flow
 
 
 class CompanyRepositoryImpl(
-    private val dao: CompanyDao,
-    private val application: Application
+    private val dao: CompanyDao
 ) :
     CompanyRepository {
-
 
     override fun getCompanies(): Flow<List<Company>> {
         return getLocalCompanies()
@@ -41,13 +39,13 @@ class CompanyRepositoryImpl(
         TODO()
     }
 
-    private suspend fun parseCSV(): List<Company> {
+    private suspend fun parseCSV(context: Context): List<Company> {
 
-        val resfile = application.applicationContext.resources.openRawResource(R.raw.test)
+        val resfile = context.resources.openRawResource(R.raw.test)
         val raa: List<Company> = csvReader().open(resfile) {
             readAllAsSequence()
                 .map {
-                    Company(it[0], it[1], it[2], it[3])
+                    Company(it[0], it[1], it[2], it[3], it[4].toInt())
                 }.toList()
         }
         return raa
