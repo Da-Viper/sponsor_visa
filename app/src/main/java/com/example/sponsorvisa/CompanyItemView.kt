@@ -2,7 +2,7 @@ package com.example.sponsorvisa
 
 import android.content.Context
 import android.widget.TextView
-import com.example.sponsorvisa.model.Company
+import com.example.sponsorvisa.data.local.Company
 import com.google.android.material.card.MaterialCardView
 
 class CompanyItemView(context: Context): MaterialCardView(context) {

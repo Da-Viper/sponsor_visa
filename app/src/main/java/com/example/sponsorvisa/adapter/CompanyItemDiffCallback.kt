@@ -1,7 +1,7 @@
 package com.example.sponsorvisa.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.sponsorvisa.model.Company
+import com.example.sponsorvisa.data.local.Company
 
 class CompanyItemDiffCallback : DiffUtil.ItemCallback<Company>() {
     override fun areItemsTheSame(oldItem: Company, newItem: Company): Boolean {

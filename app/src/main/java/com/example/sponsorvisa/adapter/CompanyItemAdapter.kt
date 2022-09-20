@@ -1,12 +1,11 @@
 package com.example.sponsorvisa.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sponsorvisa.databinding.ItemCompanyBinding
-import com.example.sponsorvisa.model.Company
+import com.example.sponsorvisa.data.local.Company
 
 class CompanyItemAdapter :
     ListAdapter<Company, CompanyItemAdapter.CompanyItemViewHolder>(CompanyItemDiffCallback()) {

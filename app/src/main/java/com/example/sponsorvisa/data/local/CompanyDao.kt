@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CompanyDao {
 
-
     @Query("SELECT * FROM ${Company.TABLE_NAME}")
     fun getAllCompanies(): Flow<List<Company>>
 
@@ -18,6 +17,4 @@ interface CompanyDao {
 
     @Query("DELETE FROM ${Company.TABLE_NAME}")
     suspend fun deleteAll()
-
-
 }
