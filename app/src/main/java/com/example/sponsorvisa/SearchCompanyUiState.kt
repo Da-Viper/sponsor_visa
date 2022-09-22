@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 data class SearchCompanyUiState(
-    val notes: Flow<List<Company>> = flow { emit(emptyList()) },
+    val companies: Flow<List<Company>> = flow { emit(emptyList()) },
     val companySort: CompanySort = CompanySort.Name(SortType.Ascending),
     val isLoading: Boolean = false,
 )

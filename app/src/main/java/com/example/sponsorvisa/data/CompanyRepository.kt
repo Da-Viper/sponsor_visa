@@ -9,7 +9,7 @@ interface CompanyRepository {
 
     suspend fun getCompanyByName(name: String): Flow<List<Company>>
 
-    suspend fun insertCompanies(companies: List<Company>)
+    suspend fun updateCompanies(companies: List<Company>)
 
     suspend fun deleteAllCompanies()
 }

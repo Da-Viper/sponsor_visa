@@ -21,7 +21,7 @@ class CompanyRepositoryImpl(
         return dao.getCompanyByName(name)
     }
 
-    override suspend fun insertCompanies(companies: List<Company>) {
+    override suspend fun updateCompanies(companies: List<Company>) {
         dao.insertAll(companies)
     }
 
