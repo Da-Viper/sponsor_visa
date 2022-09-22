@@ -10,7 +10,7 @@ data class Company(
     val rating: String?,
     val route: String,
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int? = null,
 ) {
     companion object {
         const val TABLE_NAME = "Company"
