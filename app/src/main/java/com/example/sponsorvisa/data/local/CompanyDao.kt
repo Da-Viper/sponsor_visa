@@ -10,7 +10,7 @@ interface CompanyDao {
     fun getAllCompanies(): Flow<List<Company>>
 
     @Query("SELECT * FROM ${Company.TABLE_NAME} where name is :name")
-    suspend fun getCompanyByName(name: String): Flow<List<Company>>
+    fun getCompanyByName(name: String): Flow<List<Company>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(companies: List<Company>)

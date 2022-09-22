@@ -15,6 +15,14 @@ android {
         versionCode 1
         versionName "1.0"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
+            }
+        }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
@@ -58,7 +66,7 @@ dependencies {
 
 
     // dependency injection
-    implementation ("com.google.dagger:hilt-android:$hilt_version")
+    implementation("com.google.dagger:hilt-android:$hilt_version")
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     // external libraries

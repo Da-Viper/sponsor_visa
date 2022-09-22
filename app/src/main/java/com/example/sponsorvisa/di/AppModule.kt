@@ -18,12 +18,28 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
+    private lateinit var pal: AppDatabase
 
     @Singleton
     @Provides
     fun provideCompanyDatabase(app: Application): AppDatabase {
-        return Room.databaseBuilder(app, AppDatabase::class.java, AppDatabase.DATABASE_NAME)
+        pal = Room.databaseBuilder(app, AppDatabase::class.java, AppDatabase.DATABASE_NAME)
+//            .addCallback(object : RoomDatabase.Callback() {
+//                override fun onCreate(db: SupportSQLiteDatabase) {
+//                    super.onCreate(db)
+//                     moving to a new thread
+//                    MainScope().launch {
+//                        parseCSV(app.baseContext).run {
+//                            pal.companyDao().insertAll(this)
+//                        }
+//                    }
+//                        getInstance(context).dataDao()
+//                            .insert(PREPOPULATE_DATA)
+//                    }
+//                }
+//            })
             .build()
+        return pal
     }
 
     @Singleton
