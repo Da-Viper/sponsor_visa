@@ -28,7 +28,6 @@ class MainFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.onEvent(CompaniesEvent.Load)
     }
 
     override fun onCreateView(
@@ -57,13 +56,13 @@ class MainFragment : Fragment() {
                 viewModel.uiState.collect { currentState ->
                     when (currentState) {
                         is SearchCompanyUiState.Loading -> {
-                            TODO()
+                            Log.i("UiState", "Loading")
                         }
                         is SearchCompanyUiState.Success -> {
                             setupSuccessState(currentState)
                         }
                         is SearchCompanyUiState.Error -> {
-                            TODO()
+                            Log.i("UiState", "Error")
                         }
                     }
                 }
