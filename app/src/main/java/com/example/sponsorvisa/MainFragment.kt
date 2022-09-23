@@ -6,15 +6,14 @@ import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.sponsorvisa.adapter.CompanyItemAdapter
 import com.example.sponsorvisa.databinding.FragmentMainBinding
 import com.example.sponsorvisa.viewmodels.SharedViewModel
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.flatMapConcat
-import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
@@ -24,28 +23,12 @@ class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding: FragmentMainBinding
         get() = _binding!!
+    private val adapter = CompanyItemAdapter()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.onEvent(CompaniesEvent.Load)
-
-//        lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.CREATED) {
-//                viewModel.uiState.collect {
-//                    Log.i("Recycler view", "setting stuff2")
-//                    val c = it.companies.asList()
-//                    Log.i("Recycler view", it.companies.asList()[1].toString())
-//                    it.apply {
-////                        val c = companies.asList()
-//                        Log.i("Recycler view", c[1].toString())
-//                        _adapter.apply {
-//                            submitList(c)
-//                        }
-//                    }
-//                }
-//            }
-//        }
     }
 
     override fun onCreateView(
@@ -58,33 +41,40 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        setupRecyclerView()
+        binding.rvMain.adapter = adapter
+        setupObservers()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_fragment_company, menu)
 
         val searchItem = menu.findItem(R.id.action_search_bar)
-        val searchView = searchItem.actionView as SearchView
-
     }
 
-    private fun setupRecyclerView() {
-
-        val adapter = CompanyItemAdapter()
-        binding.rvMain.adapter = adapter
-        lifecycleScope.launch {
-            viewModel.getCompanies().collect {
-                adapter.submitList(it)
+    private fun setupObservers() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { currentState ->
+                    when (currentState) {
+                        is SearchCompanyUiState.Loading -> {
+                            TODO()
+                        }
+                        is SearchCompanyUiState.Success -> {
+                            setupSuccessState(currentState)
+                        }
+                        is SearchCompanyUiState.Error -> {
+                            TODO()
+                        }
+                    }
+                }
             }
         }
-        Log.i("Recycler view", "setting stuff")
     }
 
-
-    private fun setupSearchView() {
-        val parent = (requireActivity() as MainActivity)
+    private suspend fun setupSuccessState(state: SearchCompanyUiState.Success) {
+        state.companies.collect {
+            adapter.submitList(it)
+        }
     }
 
     companion object {

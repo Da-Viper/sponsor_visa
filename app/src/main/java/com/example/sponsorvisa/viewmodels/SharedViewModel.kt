@@ -16,19 +16,15 @@ import javax.inject.Inject
 @HiltViewModel
 class SharedViewModel @Inject constructor(
     private val getCompaniesUseCase: CompanyUseCases,
-//    private val savedStateHandle: SavedStateHandle,
-    application: Application,
 ) :
     ViewModel() {
 
-    private val _uiState = MutableStateFlow(SearchCompanyUiState(isLoading = true))
+    private val _uiState: MutableStateFlow<SearchCompanyUiState> =
+        MutableStateFlow(SearchCompanyUiState.Loading)
     val uiState: StateFlow<SearchCompanyUiState> = _uiState
 
     init {
-//        parseCSV(application.baseContext).run {
-//            populateDatabase(this)
-//        }
-
+        loadDatabase()
     }
 
     private fun populateDatabase(companies: List<Company>) {
@@ -37,21 +33,17 @@ class SharedViewModel @Inject constructor(
         }
     }
 
-    suspend fun getCompanies(): Flow<List<Company>> {
-        return getCompaniesUseCase.getCompanies()
+    private fun loadDatabase() {
+        viewModelScope.launch {
+            _uiState.value = SearchCompanyUiState.Success(getCompaniesUseCase.getCompanies())
+        }
     }
+
     fun onEvent(event: CompaniesEvent) {
         viewModelScope.launch {
             when (event) {
                 is CompaniesEvent.Load -> {
-//                    _uiState.update { cState ->
-//                        cState.copy(
-////                            companies = getCompaniesUseCase.getCompanies(),
-//                            companies = flow { emit(parseCSV(app.baseContext)) },
-//                            isLoading = false
-//                        )
-//                    }
-                    _uiState.value = SearchCompanyUiState(getCompaniesUseCase.getCompanies())
+                    loadDatabase()
                 }
                 is CompaniesEvent.Search -> {
                     TODO()
