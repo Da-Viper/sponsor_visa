@@ -81,8 +81,3 @@ class MainFragment : Fragment() {
     }
 }
 
-
-@OptIn(FlowPreview::class)
-suspend fun <T> Flow<List<T>>.asList() =
-    flatMapConcat { it.asFlow() }.toList()
-
