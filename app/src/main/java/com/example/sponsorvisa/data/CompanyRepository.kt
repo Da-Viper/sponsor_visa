@@ -7,7 +7,7 @@ interface CompanyRepository {
 
     fun getCompanies(): Flow<List<Company>>
 
-    suspend fun getCompanyByName(name: String): Flow<List<Company>>
+    fun getCompanyByName(name: String): Flow<List<Company>>
 
     suspend fun updateCompanies(companies: List<Company>)
 

@@ -17,7 +17,10 @@ class CompanyRepositoryImpl(
         return getLocalCompanies()
     }
 
-    override suspend fun getCompanyByName(name: String): Flow<List<Company>> {
+    override fun getCompanyByName(name: String): Flow<List<Company>> {
+        if(name.isBlank()){
+           return getCompanies()
+        }
         return dao.getCompanyByName(name)
     }
 

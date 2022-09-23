@@ -11,9 +11,10 @@ class GetCompanies(
     private val repository: CompanyRepository
 ) {
     operator fun invoke(
+        name: String = "",
         companySort: CompanySort = CompanySort.Name(SortType.Ascending)
     ): Flow<List<Company>> {
-        return repository.getCompanies().map { companies ->
+        return repository.getCompanyByName(name).map { companies ->
             when (companySort.sortType) {
                 is SortType.Ascending -> {
                     when (companySort) {

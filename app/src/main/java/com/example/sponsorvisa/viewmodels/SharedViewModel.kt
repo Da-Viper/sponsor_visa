@@ -1,13 +1,10 @@
 package com.example.sponsorvisa.viewmodels
 
-import android.app.Application
 import androidx.lifecycle.*
 import com.example.sponsorvisa.CompaniesEvent
 import com.example.sponsorvisa.SearchCompanyUiState
-import com.example.sponsorvisa.asList
 import com.example.sponsorvisa.data.local.Company
 import com.example.sponsorvisa.data.use_cases.CompanyUseCases
-import com.example.sponsorvisa.utils.parseCSV
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -46,7 +43,8 @@ class SharedViewModel @Inject constructor(
                     loadDatabase()
                 }
                 is CompaniesEvent.Search -> {
-                    TODO()
+                    _uiState.value =
+                        SearchCompanyUiState.Success(getCompaniesUseCase.getCompanies(event.name))
                 }
                 is CompaniesEvent.Sort -> {
                     TODO()
