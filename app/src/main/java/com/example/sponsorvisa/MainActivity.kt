@@ -14,23 +14,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        supportActionBar?.hide()
         setContentView(binding.root)
-    }
-
-    private fun setupSearchQuery() {
-        val searchView: SearchView = binding.bottomBar.searchView
-
-        searchView.setOnQueryTextListener(
-            object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    TODO("Not yet implemented")
-                }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    TODO("Not yet implemented")
-                }
-            }
-        )
     }
 }
