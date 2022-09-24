@@ -9,9 +9,10 @@ data class Company(
     val city: String?,
     val rating: String?,
     val route: String,
-    @PrimaryKey(autoGenerate = true)
-    val id: Int? = null,
 ) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
+
     companion object {
         const val TABLE_NAME = "Company"
     }
