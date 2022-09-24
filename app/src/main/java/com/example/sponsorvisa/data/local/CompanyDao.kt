@@ -9,7 +9,7 @@ interface CompanyDao {
     @Query("SELECT * FROM ${Company.TABLE_NAME}")
     fun getAllCompanies(): Flow<List<Company>>
 
-    @Query("SELECT * FROM ${Company.TABLE_NAME} where name is :name")
+    @Query("SELECT * FROM ${Company.TABLE_NAME} where name LIKE '%' || :name || '%'")
     fun getCompanyByName(name: String): Flow<List<Company>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
