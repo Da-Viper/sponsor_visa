@@ -48,7 +48,7 @@ class CompanyRepositoryImpl(
         val raa: List<Company> = csvReader().open(resfile) {
             readAllAsSequence()
                 .map {
-                    Company(it[0], it[1], it[2], it[3], it[4].toInt())
+                    Company(it[0], it[1], it[2], it[3])
                 }.toList()
         }
         return raa
