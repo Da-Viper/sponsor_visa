@@ -65,7 +65,8 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:$room_version")
 //     To use Kotlin annotation processing tool (kapt)
     kapt("androidx.room:room-compiler:$room_version")
-
+    //pagination
+    implementation("androidx.paging:paging-runtime:$paging_version")
 
     // dependency injection
     implementation("com.google.dagger:hilt-android:$hilt_version")

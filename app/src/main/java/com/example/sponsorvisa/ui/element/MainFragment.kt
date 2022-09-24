@@ -1,21 +1,17 @@
-package com.example.sponsorvisa
+package com.example.sponsorvisa.ui.element
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
+import com.example.sponsorvisa.R
+import com.example.sponsorvisa.ui.state.SearchCompanyUiState
 import com.example.sponsorvisa.adapter.CompanyItemAdapter
 import com.example.sponsorvisa.databinding.FragmentMainBinding
+import com.example.sponsorvisa.ui.state.CompaniesEvent
 import com.example.sponsorvisa.viewmodels.SharedViewModel
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
 

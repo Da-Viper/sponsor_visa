@@ -1,6 +1,6 @@
-package com.example.sponsorvisa
+package com.example.sponsorvisa.ui.state
 
-import com.example.sponsorvisa.utils.CompanySort
+import com.example.sponsorvisa.domain.utils.CompanySort
 
 sealed class CompaniesEvent {
     object Load : CompaniesEvent()

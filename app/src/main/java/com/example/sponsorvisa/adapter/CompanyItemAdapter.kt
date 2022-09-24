@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sponsorvisa.databinding.ItemCompanyBinding
-import com.example.sponsorvisa.data.local.Company
+import com.example.sponsorvisa.data.Company
 
 class CompanyItemAdapter :
     ListAdapter<Company, CompanyItemAdapter.CompanyItemViewHolder>(CompanyItemDiffCallback()) {

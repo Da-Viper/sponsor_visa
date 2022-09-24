@@ -2,14 +2,12 @@ package com.example.sponsorvisa.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.sponsorvisa.CompaniesEvent
-import com.example.sponsorvisa.SearchCompanyUiState
-import com.example.sponsorvisa.data.local.Company
-import com.example.sponsorvisa.data.use_cases.CompanyUseCases
-import com.example.sponsorvisa.utils.parseCSV
+import com.example.sponsorvisa.ui.state.CompaniesEvent
+import com.example.sponsorvisa.ui.state.SearchCompanyUiState
+import com.example.sponsorvisa.data.Company
+import com.example.sponsorvisa.domain.use_cases.CompanyUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject

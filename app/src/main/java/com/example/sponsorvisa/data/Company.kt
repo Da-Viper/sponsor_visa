@@ -1,4 +1,4 @@
-package com.example.sponsorvisa.data.local
+package com.example.sponsorvisa.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

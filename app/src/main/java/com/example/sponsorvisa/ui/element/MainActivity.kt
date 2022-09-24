@@ -1,4 +1,4 @@
-package com.example.sponsorvisa
+package com.example.sponsorvisa.ui.element
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -1,6 +1,6 @@
-package com.example.sponsorvisa
+package com.example.sponsorvisa.ui.state
 
-import com.example.sponsorvisa.data.local.Company
+import com.example.sponsorvisa.data.Company
 import kotlinx.coroutines.flow.Flow
 
 

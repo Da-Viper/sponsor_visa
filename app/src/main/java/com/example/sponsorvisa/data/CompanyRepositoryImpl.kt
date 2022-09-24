@@ -2,8 +2,7 @@ package com.example.sponsorvisa.data
 
 import android.content.Context
 import com.example.sponsorvisa.R
-import com.example.sponsorvisa.data.local.Company
-import com.example.sponsorvisa.data.local.CompanyDao
+import com.example.sponsorvisa.data.source.local.CompanyDao
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import kotlinx.coroutines.flow.Flow
 

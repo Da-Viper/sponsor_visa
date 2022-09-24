@@ -1,8 +1,8 @@
-package com.example.sponsorvisa.utils
+package com.example.sponsorvisa.domain.utils
 
 import android.content.Context
 import com.example.sponsorvisa.R
-import com.example.sponsorvisa.data.local.Company
+import com.example.sponsorvisa.data.Company
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import java.io.File
 import java.util.Optional

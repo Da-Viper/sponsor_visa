@@ -2,18 +2,12 @@ package com.example.sponsorvisa.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.sponsorvisa.data.local.AppDatabase
-import com.example.sponsorvisa.data.local.AppDatabaseTest
-import com.example.sponsorvisa.utils.parseCSV
+import com.example.sponsorvisa.data.source.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 import javax.inject.Named
 
 @Module

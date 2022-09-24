@@ -1,7 +1,8 @@
-package com.example.sponsorvisa.data.local
+package com.example.sponsorvisa.data.source.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.sponsorvisa.data.Company
 
 @Database(entities = [Company::class], version = 1, exportSchema = true)
 abstract class AppDatabase : RoomDatabase() {

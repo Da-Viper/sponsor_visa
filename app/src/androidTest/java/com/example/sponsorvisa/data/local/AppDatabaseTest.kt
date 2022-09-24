@@ -1,20 +1,14 @@
 package com.example.sponsorvisa.data.local
 
-import android.content.Context
 import android.util.Log
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
+import com.example.sponsorvisa.data.source.local.AppDatabase
+import com.example.sponsorvisa.data.Company
+import com.example.sponsorvisa.data.source.local.CompanyDao
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import dagger.hilt.android.testing.HiltTestApplication
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.*
 
 import org.junit.After

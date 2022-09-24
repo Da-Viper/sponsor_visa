@@ -1,4 +1,4 @@
-package com.example.sponsorvisa.utils
+package com.example.sponsorvisa.domain.utils
 
 sealed class CompanySort(val sortType: SortType) {
     class Name(sortType: SortType): CompanySort(sortType)

@@ -1,4 +1,4 @@
-package com.example.sponsorvisa.data.use_cases
+package com.example.sponsorvisa.domain.use_cases
 
 import com.example.sponsorvisa.data.CompanyRepository
 

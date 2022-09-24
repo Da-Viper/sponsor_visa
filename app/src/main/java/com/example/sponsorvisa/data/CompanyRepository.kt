@@ -1,6 +1,5 @@
 package com.example.sponsorvisa.data
 
-import com.example.sponsorvisa.data.local.Company
 import kotlinx.coroutines.flow.Flow
 
 interface CompanyRepository {

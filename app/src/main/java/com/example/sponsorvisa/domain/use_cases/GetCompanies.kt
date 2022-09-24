@@ -1,9 +1,9 @@
-package com.example.sponsorvisa.data.use_cases
+package com.example.sponsorvisa.domain.use_cases
 
 import com.example.sponsorvisa.data.CompanyRepository
-import com.example.sponsorvisa.data.local.Company
-import com.example.sponsorvisa.utils.CompanySort
-import com.example.sponsorvisa.utils.SortType
+import com.example.sponsorvisa.data.Company
+import com.example.sponsorvisa.domain.utils.CompanySort
+import com.example.sponsorvisa.domain.utils.SortType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

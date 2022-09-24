@@ -2,22 +2,17 @@ package com.example.sponsorvisa.di
 
 import android.app.Application
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.sponsorvisa.data.CompanyRepository
 import com.example.sponsorvisa.data.CompanyRepositoryImpl
-import com.example.sponsorvisa.data.local.AppDatabase
-import com.example.sponsorvisa.data.use_cases.CompanyUseCases
-import com.example.sponsorvisa.data.use_cases.DeleteCompanies
-import com.example.sponsorvisa.data.use_cases.GetCompanies
-import com.example.sponsorvisa.data.use_cases.UpdateCompanies
-import com.example.sponsorvisa.utils.parseCSV
+import com.example.sponsorvisa.data.source.local.AppDatabase
+import com.example.sponsorvisa.domain.use_cases.CompanyUseCases
+import com.example.sponsorvisa.domain.use_cases.DeleteCompanies
+import com.example.sponsorvisa.domain.use_cases.GetCompanies
+import com.example.sponsorvisa.domain.use_cases.UpdateCompanies
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 import javax.inject.Singleton
 
 @Module

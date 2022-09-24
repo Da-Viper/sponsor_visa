@@ -1,6 +1,7 @@
-package com.example.sponsorvisa.data.local
+package com.example.sponsorvisa.data.source.local
 
 import androidx.room.*
+import com.example.sponsorvisa.data.Company
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -9,7 +10,8 @@ interface CompanyDao {
     @Query("SELECT * FROM ${Company.TABLE_NAME}")
     fun getAllCompanies(): Flow<List<Company>>
 
-    @Query("SELECT * FROM ${Company.TABLE_NAME} where name LIKE '%' || :name || '%'")
+    @Query("SELECT * FROM ${Company.TABLE_NAME} " +
+            "where name LIKE '%' || :name || '%'")
     fun getCompanyByName(name: String): Flow<List<Company>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

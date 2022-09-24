@@ -1,4 +1,4 @@
-package com.example.sponsorvisa.utils
+package com.example.sponsorvisa.domain.utils
 
 sealed class SortType {
     object Ascending: SortType()
