@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
     app:cardElevation="100dp"
     app:cardCornerRadius="8dp">
 
@@ -19,7 +21,7 @@
         <TextView
             android:id="@+id/tvCompanyName"
             android:text="@string/default_company"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/HeaderTextStyle"/>
 

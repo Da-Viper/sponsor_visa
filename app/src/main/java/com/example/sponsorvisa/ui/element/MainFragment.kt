@@ -25,7 +25,6 @@ class MainFragment : Fragment() {
     private val adapter = CompanyItemAdapter()
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
@@ -47,7 +46,10 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvMain.adapter = adapter
+        binding.run {
+            rvMain.addItemDecoration(CompanyItemSpacing())
+            rvMain.adapter = adapter
+        }
     }
 
 
