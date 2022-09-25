@@ -59,14 +59,15 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
-    implementation 'androidx.room:room-common:2.4.3'
-    implementation 'androidx.room:room-ktx:2.4.3'
+    implementation("androidx.room:room-common:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
 //     To use Kotlin annotation processing tool (kapt)
     kapt("androidx.room:room-compiler:$room_version")
     //pagination
     implementation("androidx.paging:paging-runtime:$paging_version")
+    implementation("androidx.room:room-paging:$room_version")
 
     // dependency injection
     implementation("com.google.dagger:hilt-android:$hilt_version")

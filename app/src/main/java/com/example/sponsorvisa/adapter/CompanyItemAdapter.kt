@@ -2,13 +2,13 @@ package com.example.sponsorvisa.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sponsorvisa.databinding.ItemCompanyBinding
 import com.example.sponsorvisa.data.Company
 
 class CompanyItemAdapter :
-    ListAdapter<Company, CompanyItemAdapter.CompanyItemViewHolder>(CompanyItemDiffCallback()) {
+    PagingDataAdapter<Company, CompanyItemAdapter.CompanyItemViewHolder>(CompanyItemDiffCallback()) {
 
     inner class CompanyItemViewHolder(private val binding: ItemCompanyBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -27,7 +27,7 @@ class CompanyItemAdapter :
     }
 
     override fun onBindViewHolder(holder: CompanyItemViewHolder, position: Int) {
-        val item = getItem(position)
+        val item = getItem(position) ?: return
         holder.bindItem(item)
     }
 }

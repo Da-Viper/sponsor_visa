@@ -1,12 +1,13 @@
 package com.example.sponsorvisa.data
 
+import androidx.paging.PagingSource
 import kotlinx.coroutines.flow.Flow
 
 interface CompanyRepository {
 
-    fun getCompanies(): Flow<List<Company>>
+    fun getCompanies(): PagingSource<Int,Company>
 
-    fun getCompanyByName(name: String): Flow<List<Company>>
+    fun getCompanyByName(name: String): PagingSource<Int,Company>
 
     suspend fun updateCompanies(companies: List<Company>)
 

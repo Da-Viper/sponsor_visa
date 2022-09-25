@@ -1,6 +1,7 @@
 package com.example.sponsorvisa.data
 
 import android.content.Context
+import androidx.paging.PagingSource
 import com.example.sponsorvisa.R
 import com.example.sponsorvisa.data.source.local.CompanyDao
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
@@ -12,11 +13,11 @@ class CompanyRepositoryImpl(
 ) :
     CompanyRepository {
 
-    override fun getCompanies(): Flow<List<Company>> {
+    override fun getCompanies(): PagingSource<Int,Company> {
         return getLocalCompanies()
     }
 
-    override fun getCompanyByName(name: String): Flow<List<Company>> {
+    override fun getCompanyByName(name: String): PagingSource<Int,Company> {
         if(name.isBlank()){
            return getCompanies()
         }
@@ -32,12 +33,12 @@ class CompanyRepositoryImpl(
     }
 
 
-    private fun getLocalCompanies(): Flow<List<Company>> {
+    private fun getLocalCompanies(): PagingSource<Int,Company> {
         return dao.getAllCompanies()
     }
 
 
-    suspend fun getAPICompaines(): List<Company> {
+    suspend fun getAPICompaines(): PagingSource<Int,Company> {
         TODO()
     }
 
