@@ -7,7 +7,7 @@ interface CompanyRepository {
 
     fun getCompanies(): PagingSource<Int,Company>
 
-    fun getCompanyByName(name: String): PagingSource<Int,Company>
+    fun getCompanyByName(name: String, isAsc: Int): PagingSource<Int,Company>
 
     suspend fun updateCompanies(companies: List<Company>)
 

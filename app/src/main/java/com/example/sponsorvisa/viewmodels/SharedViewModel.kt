@@ -8,6 +8,8 @@ import com.example.sponsorvisa.ui.state.CompaniesEvent
 import com.example.sponsorvisa.ui.state.SearchCompanyUiState
 import com.example.sponsorvisa.data.Company
 import com.example.sponsorvisa.domain.use_cases.CompanyUseCases
+import com.example.sponsorvisa.domain.utils.CompanySort
+import com.example.sponsorvisa.domain.utils.SortType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
@@ -23,14 +25,19 @@ class SharedViewModel @Inject constructor(
 
     private val _uiState: MutableStateFlow<SearchCompanyUiState> =
         MutableStateFlow(SearchCompanyUiState.Loading)
+    val uiState = _uiState.asStateFlow()
 
     private val _actionSharedFlow = MutableSharedFlow<CompaniesEvent>()
-    val pagingDataFlow: Flow<PagingData<Company>>
 
+    private var _sortType: CompanySort = CompanySort.Name(SortType.Ascending)
+
+    private val _orderState = MutableStateFlow(Boolean)
+    val orderState = _orderState.asStateFlow()
 
     init {
-
-        pagingDataFlow = createSearchFlow(_actionSharedFlow)
+        viewModelScope.launch {
+            _uiState.value = SearchCompanyUiState.Success(createSearchFlow(_actionSharedFlow))
+        }
         loadDatabase(_actionSharedFlow)
 
     }
@@ -44,7 +51,7 @@ class SharedViewModel @Inject constructor(
                 Log.i(NAME, "search for company: Initial Query")
                 emit(CompaniesEvent.Search(INITIAL_QUERY))
             }
-            .flatMapLatest { getCompaniesUseCase.getCompanies(it.name) }
+            .flatMapLatest { getCompaniesUseCase.getCompanies(it.name, _sortType) }
             .cachedIn(viewModelScope)
     }
 
@@ -54,42 +61,32 @@ class SharedViewModel @Inject constructor(
                 .filterIsInstance<CompaniesEvent.Load>()
                 .distinctUntilChanged()
                 .collectLatest {
-                    _uiState.emit(
+                    _uiState.value =
                         SearchCompanyUiState.Success(getCompaniesUseCase.getCompanies())
-                    )
                 }
         }
     }
 
     fun onUiEvent(event: CompaniesEvent) {
-        viewModelScope.launch {
-            _actionSharedFlow.emit(event)
-        }
-    }
-
-
-    val onEvent: (CompaniesEvent) -> Unit = { event ->
-        viewModelScope.launch {
-            when (event) {
-                is CompaniesEvent.Load -> {
-                    loadDatabase()
-                    Log.i(NAME, "loaded database")
-                }
-                is CompaniesEvent.Search -> {
-                    Log.i(NAME, "search: ${event.name}")
-                    _uiState.emit(SearchCompanyUiState.Loading)
-                    _uiState.emit(
-                        SearchCompanyUiState.Success(
-                            getCompaniesUseCase.getCompanies(
-                                event.name
-                            )
+        when (event) {
+            is CompaniesEvent.Search -> {
+                viewModelScope.launch {
+                    Log.i(NAME, "sortType: ${_sortType.sortType}")
+                    _uiState.value = SearchCompanyUiState.Success(
+                        getCompaniesUseCase.getCompanies(
+                            event.name, _sortType
                         )
                     )
-                    Log.i(NAME, "search2 : ${event.name}")
                 }
-                is CompaniesEvent.Sort -> {
-                    TODO()
-                }
+            }
+
+            is CompaniesEvent.Load -> {
+                // TODO Load database
+            }
+            is CompaniesEvent.Sort -> {
+                Log.i(NAME, "got to changing ${_sortType.sortType}")
+                _sortType = event.companySort
+                Log.i(NAME, "got to changing ${_sortType.sortType}")
             }
         }
     }

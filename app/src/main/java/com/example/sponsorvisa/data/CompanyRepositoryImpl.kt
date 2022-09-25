@@ -17,11 +17,11 @@ class CompanyRepositoryImpl(
         return getLocalCompanies()
     }
 
-    override fun getCompanyByName(name: String): PagingSource<Int,Company> {
+    override fun getCompanyByName(name: String, isAsc: Int): PagingSource<Int,Company> {
         if(name.isBlank()){
            return getCompanies()
         }
-        return dao.getCompanyByName(name)
+        return dao.getCompanyByName(name, isAsc)
     }
 
     override suspend fun updateCompanies(companies: List<Company>) {
