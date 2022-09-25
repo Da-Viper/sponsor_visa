@@ -24,22 +24,19 @@ class SharedViewModel @Inject constructor(
     private val _uiState: MutableStateFlow<SearchCompanyUiState> =
         MutableStateFlow(SearchCompanyUiState.Loading)
 
+    private val _actionSharedFlow = MutableSharedFlow<CompaniesEvent>()
     val pagingDataFlow: Flow<PagingData<Company>>
 
-    val onUiEvent: (CompaniesEvent) -> Unit
 
     init {
-        val actionSharedFlow = MutableSharedFlow<CompaniesEvent>()
 
-        pagingDataFlow = createSearchFlow(actionSharedFlow)
-            .flatMapLatest { getCompaniesUseCase.getCompanies(it.name) }
-            .cachedIn(viewModelScope)
+        pagingDataFlow = createSearchFlow(_actionSharedFlow)
+        loadDatabase(_actionSharedFlow)
 
-        onUiEvent = { event -> viewModelScope.launch { actionSharedFlow.emit(event) } }
     }
 
     private fun createSearchFlow(mutSharedFlow: MutableSharedFlow<CompaniesEvent>):
-            Flow<CompaniesEvent.Search> {
+            Flow<PagingData<Company>> {
         return mutSharedFlow
             .filterIsInstance<CompaniesEvent.Search>()
             .distinctUntilChanged()
@@ -47,11 +44,26 @@ class SharedViewModel @Inject constructor(
                 Log.i(NAME, "search for company: Initial Query")
                 emit(CompaniesEvent.Search(INITIAL_QUERY))
             }
+            .flatMapLatest { getCompaniesUseCase.getCompanies(it.name) }
+            .cachedIn(viewModelScope)
     }
 
-    private fun loadDatabase() {
+    private fun loadDatabase(mutSharedFlow: MutableSharedFlow<CompaniesEvent>) {
         viewModelScope.launch {
-            _uiState.emit(SearchCompanyUiState.Success(getCompaniesUseCase.getCompanies()))
+            mutSharedFlow
+                .filterIsInstance<CompaniesEvent.Load>()
+                .distinctUntilChanged()
+                .collectLatest {
+                    _uiState.emit(
+                        SearchCompanyUiState.Success(getCompaniesUseCase.getCompanies())
+                    )
+                }
+        }
+    }
+
+    fun onUiEvent(event: CompaniesEvent) {
+        viewModelScope.launch {
+            _actionSharedFlow.emit(event)
         }
     }
 
