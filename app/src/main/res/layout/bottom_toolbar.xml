@@ -2,24 +2,28 @@
 <com.google.android.material.appbar.MaterialToolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_height="?attr/actionBarSize"
+    android:layout_gravity="bottom"
+    android:background="@color/design_default_color_surface"
     >
 
     <!--  android:layout_height="?attr/actionBarSize"-->
     <androidx.appcompat.widget.SearchView
+        android:layout_margin="10dp"
         android:id="@+id/search_view"
-        android:layout_width="311dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        app:iconifiedByDefault="false"
         app:queryHint="Search here..."
-        app:iconifiedByDefault="false">
+        app:showAsAction="ifRoom|collapseActionView">
 
-    <!-- app:showAsAction="ifRoom|collapseActionView"-->
     </androidx.appcompat.widget.SearchView>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btnFilterSort"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="match_parent"
+        android:contentDescription="@string/sort_and_filter_companies"
+        android:minWidth="50dp"
+        android:minHeight="50dp" />
 </com.google.android.material.appbar.MaterialToolbar>

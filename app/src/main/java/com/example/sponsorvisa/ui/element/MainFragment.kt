@@ -2,13 +2,16 @@ package com.example.sponsorvisa.ui.element
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.sponsorvisa.R
 import com.example.sponsorvisa.adapter.CompanyItemAdapter
+import com.example.sponsorvisa.databinding.BottomToolbarBinding
 import com.example.sponsorvisa.databinding.FragmentMainBinding
 import com.example.sponsorvisa.ui.state.CompaniesEvent
 import com.example.sponsorvisa.viewmodels.SharedViewModel
@@ -23,12 +26,6 @@ class MainFragment : Fragment() {
     private val binding: FragmentMainBinding
         get() = _binding!!
     private val adapter = CompanyItemAdapter()
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +43,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupActionBar(binding.toolBar)
         binding.run {
             rvMain.addItemDecoration(CompanyItemSpacing())
             rvMain.adapter = adapter
@@ -53,19 +51,16 @@ class MainFragment : Fragment() {
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_fragment_company, menu)
-
-        val searchItem = menu.findItem(R.id.action_search_bar)?.actionView as SearchView
-
-        Log.i(NAME, "string value got here")
-        searchItem.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+    private fun setupActionBar(toolBar: BottomToolbarBinding) {
+        val searchView = toolBar.searchView
+        toolBar.btnFilterSort.setImageResource(R.drawable.ic_action_filtersort)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Log.i(NAME, "string value $query")
                 query?.let {
                     viewModel.onUiEvent(CompaniesEvent.Search(it))
                 }
-                return true
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
