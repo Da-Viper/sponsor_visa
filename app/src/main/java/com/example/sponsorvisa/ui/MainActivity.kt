@@ -1,8 +1,9 @@
-package com.example.sponsorvisa.ui.element
+package com.example.sponsorvisa.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
+import androidx.datastore.preferences.preferencesDataStore
 import com.example.sponsorvisa.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,3 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 }
+
+val Context.dataStore by preferencesDataStore(
+    name = "settings",
+)
