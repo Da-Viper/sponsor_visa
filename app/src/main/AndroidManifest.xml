@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Sponsorvisa"
         tools:targetApi="31">
         <activity
-            android:name=".ui.element.MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:label="Companies">
             <intent-filter>

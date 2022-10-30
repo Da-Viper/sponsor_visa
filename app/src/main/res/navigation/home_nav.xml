@@ -9,5 +9,19 @@
         android:id="@+id/mainFragment"
         android:name="com.example.sponsorvisa.ui.element.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_itemListDialogFragment"
+            app:destination="@id/itemListDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/itemListDialogFragment"
+        android:name="com.example.sponsorvisa.ui.element.ItemListDialogFragment"
+        android:label="fragment_item_list_dialog_list_dialog"
+        tools:layout="@layout/fragment_item_list_dialog_list_dialog" >
+        <action
+            android:id="@+id/action_itemListDialogFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </dialog>
+
 </navigation>
