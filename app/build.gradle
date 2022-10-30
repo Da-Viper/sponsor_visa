@@ -9,7 +9,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.sponsorvisa"
+        applicationId "com.daviper.sponsorvisa"
         minSdk 25
         targetSdk 33
         versionCode 1
@@ -23,7 +23,7 @@ android {
                         "room.expandProjection": "true"]
             }
         }
-        testInstrumentationRunner "com.example.sponsorvisa.HiltTestRunner"
+        testInstrumentationRunner "com.daviper.sponsorvisa.HiltTestRunner"
     }
     buildFeatures {
         viewBinding = true
@@ -42,7 +42,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    namespace 'com.example.sponsorvisa'
+    namespace 'com.daviper.sponsorvisa'
 }
 
 dependencies {
