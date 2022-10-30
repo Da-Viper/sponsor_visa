@@ -19,8 +19,7 @@ import com.example.sponsorvisa.databinding.BottomToolbarBinding
 import com.example.sponsorvisa.databinding.FragmentMainBinding
 import com.example.sponsorvisa.domain.utils.CompanySort
 import com.example.sponsorvisa.domain.utils.SortType
-import com.example.sponsorvisa.ui.state.CompaniesEvent
-import com.example.sponsorvisa.ui.state.SearchCompanyUiState
+import com.example.sponsorvisa.ui.state.CompanyUiState
 import com.example.sponsorvisa.viewmodels.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
