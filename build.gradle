@@ -5,6 +5,7 @@ buildscript {
     ext.hilt_version ="2.43.2"
     ext.room_version = "2.4.3"
     ext.coroutines_version = "1.6.4"
+    ext.work_version = "2.7.1"
     dependencies {
         classpath("com.google.dagger:hilt-android-gradle-plugin:$hilt_version")
     }
