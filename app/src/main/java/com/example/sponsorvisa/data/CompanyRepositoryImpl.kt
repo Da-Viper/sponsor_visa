@@ -28,8 +28,8 @@ class CompanyRepositoryImpl(
         dao.insertAll(companies)
     }
 
-    override suspend fun deleteAllCompanies() {
-        dao.deleteAll()
+    override suspend fun deleteAllCompanies(): Int {
+        return dao.deleteAll()
     }
 
 

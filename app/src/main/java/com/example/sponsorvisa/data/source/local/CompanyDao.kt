@@ -24,5 +24,5 @@ interface CompanyDao {
     suspend fun insertAll(companies: List<Company>)
 
     @Query("DELETE FROM ${Company.TABLE_NAME}")
-    suspend fun deleteAll()
+    suspend fun deleteAll() : Int
 }

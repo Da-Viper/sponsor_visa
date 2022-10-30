@@ -11,5 +11,5 @@ interface CompanyRepository {
 
     suspend fun updateCompanies(companies: List<Company>)
 
-    suspend fun deleteAllCompanies()
+    suspend fun deleteAllCompanies(): Int
 }
