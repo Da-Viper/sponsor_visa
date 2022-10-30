@@ -3,9 +3,8 @@ package com.example.sponsorvisa.data
 import android.content.Context
 import androidx.paging.PagingSource
 import com.example.sponsorvisa.R
-import com.example.sponsorvisa.data.source.local.CompanyDao
+import com.example.sponsorvisa.data.local.CompanyDao
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
-import kotlinx.coroutines.flow.Flow
 
 
 class CompanyRepositoryImpl(

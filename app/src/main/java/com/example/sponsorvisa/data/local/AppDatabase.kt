@@ -1,4 +1,4 @@
-package com.example.sponsorvisa.data.source.local
+package com.example.sponsorvisa.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

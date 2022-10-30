@@ -1,9 +1,8 @@
-package com.example.sponsorvisa.data.source.local
+package com.example.sponsorvisa.data.local
 
 import androidx.paging.PagingSource
 import androidx.room.*
 import com.example.sponsorvisa.data.Company
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CompanyDao {

@@ -2,7 +2,7 @@ package com.example.sponsorvisa.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.sponsorvisa.data.source.local.AppDatabase
+import com.example.sponsorvisa.data.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

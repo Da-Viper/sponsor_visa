@@ -1,4 +1,4 @@
-package com.example.sponsorvisa.data.source.local
+package com.example.sponsorvisa.data.local
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
