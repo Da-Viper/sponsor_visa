@@ -10,3 +10,9 @@ import the project into android studio and run the app
 Mckups
 
 ![](screen_shot.jpeg)
+
+![](sc_2.jpeg)
+
+![](sc_4.jpeg)
+
+![](sc3.jpeg)
